@@ -36,9 +36,9 @@ where hire_date > (select hire_date from employees where last_name = 'DAVIES');
 
 
 -- 매니저로 근무하는 사원들의 총 수를 조회한다.
-select distinct count(manager_id)
-from employees
-where manager_id is not null;
+SELECT COUNT(DISTINCT e1.employee_id)
+FROM employees e1
+WHERE e1.employee_id in (SELECT e1.employee_id FROM employees e2 WHERE e2.manager_id = e1.employee_id);
 
 
 -- LAST_NAME 이 Zlotkey 와 동일한 부서에 근무하는 모든 사원들의 사번 및 고용날짜를 조회한다.
